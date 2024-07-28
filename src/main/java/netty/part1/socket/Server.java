@@ -1,6 +1,8 @@
 package netty.part1.socket;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,6 +12,8 @@ import java.net.Socket;
 
 @Slf4j
 public class Server {
+    private static final Logger log = LoggerFactory.getLogger(Server.class);
+
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(9000);

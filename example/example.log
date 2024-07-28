@@ -4,3 +4,5 @@ INFO main netty.part1.socketChannel.Server - before read ... java.nio.channels.S
 DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
 INFO main netty.part1.socketChannel.Server - after read ... java.nio.channels.SocketChannel[connected local=/192.168.124.39:8080 remote=/192.168.124.39:55301]
 INFO main netty.part1.socketChannel.Server - connecting...
+INFO main netty.part1.socket.Server - serRecvVal : 123
+INFO main netty.part1.socket.Client - client receive messgae : Hello Client.
