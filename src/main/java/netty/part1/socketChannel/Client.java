@@ -12,6 +12,7 @@ import java.nio.channels.SocketChannel;
 public class Client {
     public static void main(String[] args) {
         try {
+
             SocketChannel socketChannel = SocketChannel.open();
             socketChannel.connect(new InetSocketAddress(InetAddress.getLocalHost(), 8080));
             ByteBuffer byteBuffer = ByteBuffer.allocate(16);
