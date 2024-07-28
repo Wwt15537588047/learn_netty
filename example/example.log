@@ -6,3 +6,5 @@ INFO main netty.part1.socketChannel.Server - after read ... java.nio.channels.So
 INFO main netty.part1.socketChannel.Server - connecting...
 INFO main netty.part1.socket.Server - serRecvVal : 123
 INFO main netty.part1.socket.Client - client receive messgae : Hello Client.
+INFO main netty.part1.socket.Server - serRecvVal : 123
+INFO main netty.part1.socket.Client - client receive messgae : Hello Client.

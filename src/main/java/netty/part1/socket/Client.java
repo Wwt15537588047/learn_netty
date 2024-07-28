@@ -12,6 +12,7 @@ import java.net.Socket;
 
 @Slf4j
 public class Client {
+
     private static final Logger log = LoggerFactory.getLogger(Client.class);
 
     public static void main(String[] args) {
