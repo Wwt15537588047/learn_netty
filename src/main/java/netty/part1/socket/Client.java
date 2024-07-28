@@ -22,6 +22,7 @@ public class Client {
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             oos.writeInt(123);
             oos.flush();
+
             Thread.sleep(3000);
             Object object = ois.readObject();
             log.info("client receive messgae : {}", object);
