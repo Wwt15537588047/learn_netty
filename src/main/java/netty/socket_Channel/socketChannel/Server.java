@@ -1,4 +1,4 @@
-package netty.part1.socketChannel;
+package netty.socket_Channel.socketChannel;
 
 import lombok.extern.slf4j.Slf4j;
 import netty.utils.ByteBufferUtil;
