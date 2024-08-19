@@ -51,11 +51,18 @@ public class ClientCloseFuture {
         }).start();
         ChannelFuture closeFuture = channel.closeFuture();
         log.info("waiting close...");
-//        closeFuture.sync();
-//        log.info("closed...");
+        closeFuture.sync();
+        log.info("closed...");
 
-        channel.closeFuture().addListener((ChannelFutureListener) channelFuture1 ->{
-                    log.info("closed...");
+        channel.closeFuture().addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) throws Exception {
+                log.info("closed...");
+            }
         });
+
+//        channel.closeFuture().addListener((ChannelFutureListener) channelFuture1 ->{
+//                    log.info("closed...");
+//        });
     }
 }

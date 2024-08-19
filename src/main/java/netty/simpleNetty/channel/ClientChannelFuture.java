@@ -35,5 +35,11 @@ public class ClientChannelFuture {
         channelFuture.addListener((ChannelFutureListener)future -> {
             log.info("After listen : {}", future.channel());
         });
+//        channelFuture.addListener(new ChannelFutureListener() {
+//            @Override
+//            public void operationComplete(ChannelFuture future) throws Exception {
+//                log.info("After listen : {}", future.channel());
+//            }
+//        });
     }
 }
