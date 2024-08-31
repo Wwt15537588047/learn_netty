@@ -14,6 +14,7 @@ import java.util.List;
 
 @Slf4j
 @ChannelHandler.Sharable
+// 必须和LengthFieldBasedFrameDecoder一起使用，确保传递过来的ByteBuf消息是完整的，只要是完整的就不需要记录状态
 public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message> {
     @Override
     protected void encode(ChannelHandlerContext ctx, Message msg, List<Object> outList) throws Exception {

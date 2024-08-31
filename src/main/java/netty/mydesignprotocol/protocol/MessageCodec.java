@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 public class MessageCodec extends ByteToMessageCodec<Message> {
-    // 编码器
+    // 编码器,出栈前,将自定义的Message编码成ByteBuf
     @Override
     protected void encode(ChannelHandlerContext ctx, Message msg, ByteBuf out) throws Exception {
         // 1. 4字节的魔术
@@ -24,11 +24,11 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         out.writeByte(0);
         // 4. 1字节的指令类型
         out.writeByte(msg.getMessageType());
-        // 5. 4字节的序列号
+        // 5. 4字节的序列号,序列号主要用于双工通信
         out.writeInt(msg.getSequenceId());
         // 无意义，对其填充，使其前缀保持16字节
         out.writeByte(0xff);
-        // 6. 获取内容的字节数组
+        // 6. 获取内容的字节数组,将对象转为数组（使用JDK序列化方式将对象Message转为byte[]）
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
         oos.writeObject(msg);
@@ -39,7 +39,7 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         out.writeBytes(bytes);
     }
 
-    // 解码器
+    // 解码器,入栈前,将自定义的ByteBuf解码成Message
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         // 1. 获取魔术
@@ -61,8 +61,8 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         ObjectInputStream ois = new ObjectInputStream(bis);
         Message message = (Message) ois.readObject();
-        log.debug("{}, {}, {}, {}, {}, {}", magicNum, version, serializerType, messageType, sequenceId, length);
-        log.debug("{}", message);
+        log.debug("magicNum:{}, version:{}, serializerType:{}, messageType:{}, sequenceId:{}, length:{}", magicNum, version, serializerType, messageType, sequenceId, length);
+        log.debug("message:{}", message);
         out.add(message);
     }
 }
